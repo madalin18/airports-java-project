@@ -1,0 +1,16 @@
+.navbar {
+    background-color: rgba(102, 178, 255, 0.7);
+}
+
+.footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    background-color: rgba(102, 178, 255, 0.7);
+}
+
+.home {
+    height: 100vh;
+    background: url('img/bg-blue.jpg') no-repeat center center / cover;
+}
