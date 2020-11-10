@@ -2,8 +2,8 @@ package ro.siit.airports.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ro.siit.airports.domain.Airline;
+import ro.siit.airports.domain.Flight;
 
 @Repository
-public interface AirlineRepository extends JpaRepository<Airline, Long> {
+public interface FlightRepository extends JpaRepository<Flight, Long> {
 }
