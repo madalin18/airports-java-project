@@ -30,7 +30,7 @@ public class Flight {
     private Airport arrivalAirport;
 
     @ManyToOne(targetEntity = Airline.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ailine_id", nullable = false)
+    @JoinColumn(name = "airline_id", nullable = false)
     private Airline airline;
 
     public long getId() {

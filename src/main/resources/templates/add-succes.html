@@ -14,33 +14,13 @@
 </head>
     <body>
         <div class="home">
-            <div th:replace="header :: header"></div>
+            <div th:replace="header-admin :: header-admin"></div>
 
-            <div>
-                <h1>Please select the airport from the list:</h1>
+            <div th:text="${msg}">
+                Succes
             </div>
 
-            <div class="container">
-                <h1>Airports</h1>
-                <table>
-                    <thead>
-                    <th>Airport</th> <!-- heading for each column -->
-                    <th>Country</th>
-                    <th>City</th>
-                    <th>Code</th>
-                    </thead>
-                    <tbody>
-                    <tr th:each="a : ${myAirports}"> <!-- table row -->
-                        <td>
-                            <a th:href="@{/}" th:text="${a.name}"></a>
-                        </td> <!-- table data -->
-                        <td th:text="${a.country}"></td>
-                        <td th:text="${a.city}"></td>
-                        <td th:text="${a.iata}"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+
 
             <div th:replace="footer :: footer"></div>
         </div>

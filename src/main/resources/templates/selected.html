@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/styles/style.css}">
 <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">-->
 
-<!--    <link th:rel="stylesheet" th:href="@{/assets/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.css}"/>-->
+    <link th:rel="stylesheet" th:href="@{/assets/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.css}"/>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
     <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} "/>
 </head>
@@ -17,30 +17,30 @@
             <div th:replace="header :: header"></div>
 
             <div>
-                <h1>Please select the airport from the list:</h1>
+                <h1>You selected this airport:</h1>
             </div>
 
-            <div class="container">
-                <h1>Airports</h1>
-                <table>
-                    <thead>
-                    <th>Airport</th> <!-- heading for each column -->
-                    <th>Country</th>
-                    <th>City</th>
-                    <th>Code</th>
-                    </thead>
-                    <tbody>
-                    <tr th:each="a : ${myAirports}"> <!-- table row -->
-                        <td>
-                            <a th:href="@{/}" th:text="${a.name}"></a>
-                        </td> <!-- table data -->
-                        <td th:text="${a.country}"></td>
-                        <td th:text="${a.city}"></td>
-                        <td th:text="${a.iata}"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            <p th:text="${airport}">
+            </p>
+
+<!--            <div class="container">-->
+<!--                <table>-->
+<!--                    <thead>-->
+<!--                    <th>Airport</th> &lt;!&ndash; heading for each column &ndash;&gt;-->
+<!--                    <th>Country</th>-->
+<!--                    <th>City</th>-->
+<!--                    <th>Code</th>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    <tr th:each="a : ${myAirports}"> &lt;!&ndash; table row &ndash;&gt;-->
+<!--                        <td th:text="${a.name}"></td> &lt;!&ndash; table data &ndash;&gt;-->
+<!--                        <td th:text="${a.country}"></td>-->
+<!--                        <td th:text="${a.city}"></td>-->
+<!--                        <td th:text="${a.iata}"></td>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
 
             <div th:replace="footer :: footer"></div>
         </div>
