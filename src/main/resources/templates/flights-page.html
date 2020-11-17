@@ -23,14 +23,20 @@
             <div class="container">
                 <table>
                     <thead>
+                    <th>Departure Airport</th>
                     <th>Departure Time</th> <!-- heading for each column -->
+                    <th>Arrival Airport</th>
                     <th>Arrival Time</th>
+                    <th>Airline company</th>
                     <th>Flight Number</th>
                     </thead>
                     <tbody>
                     <tr th:each="f : ${myFlights}"> <!-- table row -->
+                        <td th:text="${f.departureAirport.getName()}"></td>
                         <td th:text="${f.departure}"></td> <!-- table data -->
+                        <td th:text="${f.arrivalAirport.getName()}"></td>
                         <td th:text="${f.arrival}"></td>
+                        <td th:text="${f.airline.getName()}"></td>
                         <td th:text="${f.flightNo}"></td>
                     </tr>
                     </tbody>

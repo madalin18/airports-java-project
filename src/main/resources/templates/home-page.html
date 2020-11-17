@@ -24,6 +24,7 @@
                 <h1>Airports</h1>
                 <table>
                     <thead>
+                    <th>ID</th>
                     <th>Airport</th> <!-- heading for each column -->
                     <th>Country</th>
                     <th>City</th>
@@ -31,8 +32,9 @@
                     </thead>
                     <tbody>
                     <tr th:each="a : ${myAirports}"> <!-- table row -->
+                        <td th:text="${a.id}"></td>
                         <td>
-                            <a th:href="@{/}" th:text="${a.name}"></a>
+                            <a th:href="@{/selected/} + ${a.id}" th:text="${a.name}"></a>
                         </td> <!-- table data -->
                         <td th:text="${a.country}"></td>
                         <td th:text="${a.city}"></td>

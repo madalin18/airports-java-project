@@ -10,24 +10,36 @@ import ro.siit.airports.domain.Flight;
 import ro.siit.airports.repository.AirportRepository;
 import ro.siit.airports.repository.FlightRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class SelectedController {
 
+    @Autowired
     private AirportRepository airportRepository;
+
+    @Autowired
+    private FlightRepository flightRepository;
 //
 //    @GetMapping("/selected")
 //    public String displaySelectedPage() {
 //        return "selected";
 //    }
 
-    @GetMapping("/selected")
-    public ModelAndView displayAirportByCity() {
+    @GetMapping("/selected/{airportId}")
+    public ModelAndView displayAirportByCity(@PathVariable("airportId") final Long airportId) {
         final ModelAndView mav = new ModelAndView("selected");
-        final List<Airport> airports = airportRepository.findByCity("Romania");
-        final String result = airports.stream().findFirst().map(a -> a.getName()).orElse("nu avem");
-        mav.addObject("airport", result);
+        final Optional<Airport> airport = airportRepository.findById(airportId);
+        final String airportName = airport.map(a -> a.getName()).orElse("Fara nume");
+
+        // Optional<T> = map => Optional<Optional<T>>
+        // Optional<T> = flatMap => Optional<T>
+
+        final List<Flight> flights = airport.map(a -> flightRepository.findByDepartureAirportOrArrivalAirport(a, a)).orElse(new ArrayList<>());
+
+        mav.addObject("airport", airportName);
         return mav;
     }
 
