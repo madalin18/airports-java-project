@@ -32,10 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        final String[] staticContent = {"/styles/**", "/styles/img/**", "/js/**"};
+        final String[] staticContent = {"/templates/**","/styles/**", "/styles/img/**", "/js/**"};
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/index", "/resources/**", "/static/**","/webjars/**", "/assets/**").permitAll()
+                .antMatchers("/", "/home", "/index", "/resources/**", "/templates/**", "/static/**","/webjars/**", "/assets/**").permitAll()
                 .antMatchers(staticContent).permitAll()
                 .anyRequest().authenticated()
                 .and()
