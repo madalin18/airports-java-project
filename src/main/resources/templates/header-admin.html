@@ -28,7 +28,7 @@
 <!--                    <a class="nav-link" href="#">Airports</a>-->
 <!--                </li>-->
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/flights}">Admin <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" sec:authorize="hasRole('administrator')" th:href="@{/flights}">Admin <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <a th:href="@{/}" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Logout</a>

@@ -22,15 +22,21 @@
   <body class="text-center">
     <div th:replace="header :: header"></div>
 
-    <form class="form-signin">
+    <form class="form-signin" th:action="@{/login}" method="POST">
       <i class="fas fa-plane fa-3x"></i>
+      <div class="form-group" th:if="${param.error}">
+        Invalid username and/or password.
+      </div>
+      <div class="form-group" th:if="${param.logout}">
+        You have been logged out successfully.
+      </div>
 <!--    <img class="mb-4" src="../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
-    <h1 class="h2 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <h1 class="h2 mb-3 font-weight-normal">Please sign in</h1>
+      <label for="username" class="sr-only">Email address</label>
+      <input type="email" id="username" name="username" class="form-control" placeholder="Email address" required autofocus>
+      <label for="password" class="sr-only">Password</label>
+      <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 
     <div th:replace="footer :: footer"></div>

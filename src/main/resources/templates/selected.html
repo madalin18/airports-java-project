@@ -20,27 +20,95 @@
                 <h1>You selected this airport:</h1>
             </div>
 
-            <p th:text="${airport}">
-            </p>
+<!--            <p th:text="${airport}">-->
+<!--            </p>-->
 
-<!--            <div class="container">-->
-<!--                <table>-->
-<!--                    <thead>-->
-<!--                    <th>Airport</th> &lt;!&ndash; heading for each column &ndash;&gt;-->
-<!--                    <th>Country</th>-->
-<!--                    <th>City</th>-->
-<!--                    <th>Code</th>-->
-<!--                    </thead>-->
-<!--                    <tbody>-->
-<!--                    <tr th:each="a : ${myAirports}"> &lt;!&ndash; table row &ndash;&gt;-->
-<!--                        <td th:text="${a.name}"></td> &lt;!&ndash; table data &ndash;&gt;-->
-<!--                        <td th:text="${a.country}"></td>-->
-<!--                        <td th:text="${a.city}"></td>-->
-<!--                        <td th:text="${a.iata}"></td>-->
-<!--                    </tr>-->
-<!--                    </tbody>-->
-<!--                </table>-->
-<!--            </div>-->
+            <table>
+                <thead>
+                <th>ID</th>
+                <th>Airport</th> <!-- heading for each column -->
+                <th>Country</th>
+                <th>City</th>
+                <th>Code</th>
+                </thead>
+                <tbody>
+                <tr> <!-- table row -->
+                    <td th:text="${airport.id}"></td>
+                    <td th:text="${airport.name}"></td> <!-- table data -->
+                    <td th:text="${airport.country}"></td>
+                    <td th:text="${airport.city}"></td>
+                    <td th:text="${airport.iata}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <h1>Departure flights:</h1>
+            </div>
+
+            <div class="container">
+                <table>
+                    <thead>
+                    <th>Flight Number</th>
+                    <th>Departure Airport</th>
+                    <th>Departure Time</th> <!-- heading for each column -->
+                    <th>Arrival Airport</th>
+                    <th>Arrival Time</th>
+                    <th>Airline company</th>
+                    <th>Action</th>
+                    </thead>
+                    <tbody>
+                    <tr th:each="f : ${departureFlights}"> <!-- table row -->
+                        <td th:text="${f.flightNo}"></td>
+                        <td th:text="${f.departureAirport.getName()}"></td>
+                        <td th:text="${f.departure}"></td> <!-- table data -->
+                        <td th:text="${f.arrivalAirport.getName()}"></td>
+                        <td th:text="${f.arrival}"></td>
+                        <td th:text="${f.airline.getName()}"></td>
+                        <td>
+                            <a th:href="@{/flights/} + ${f.id}">Update</a>
+                        </td>
+                        <td>
+                            <a th:href="@{/delete/} + ${f.id}">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h1>Arrival flights:</h1>
+            </div>
+
+            <div class="container">
+                <table>
+                    <thead>
+                    <th>Flight Number</th>
+                    <th>Departure Airport</th>
+                    <th>Departure Time</th> <!-- heading for each column -->
+                    <th>Arrival Airport</th>
+                    <th>Arrival Time</th>
+                    <th>Airline company</th>
+                    <th>Action</th>
+                    </thead>
+                    <tbody>
+                    <tr th:each="f : ${arrivalFlights}"> <!-- table row -->
+                        <td th:text="${f.flightNo}"></td>
+                        <td th:text="${f.departureAirport.getName()}"></td>
+                        <td th:text="${f.departure}"></td> <!-- table data -->
+                        <td th:text="${f.arrivalAirport.getName()}"></td>
+                        <td th:text="${f.arrival}"></td>
+                        <td th:text="${f.airline.getName()}"></td>
+                        <td>
+                            <a th:href="@{/flights/} + ${f.id}">Update</a>
+                        </td>
+                        <td>
+                            <a th:href="@{/delete/} + ${f.id}">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <div th:replace="footer :: footer"></div>
         </div>

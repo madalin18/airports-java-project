@@ -23,28 +23,30 @@
 
                 <div class="row">
                     <div class="col-md-4 mt-2">
-                        <form th:action="@{/post-add}" method="post" th:object="${flight}">
+                        <form th:action="@{/flights}" method="post" th:object="${myFlight}">
+
+                            <input type="hidden" th:field="*{id}" th:value="${myFlight.id}"/>
 
                             <div class="form-group">
                                 <label for="flightNo">Flight Number:</label>
-                                <input type="text" required id="flightNo" placeholder="Flight Number" th:field="*{flightNo}" autocomplete="off" class="form-control"/>
+                                <input type="text" required id="flightNo" placeholder="Flight Number" th:field="*{flightNo}" th:value="${myFlight.flightNo}" autocomplete="off" class="form-control"/>
                             </div>
 
                             <div class="form-group">
                                 <label for="departure">Departure time:</label>
-                                <input type="datetime-local" required id="departure" th:field="*{departure}" autocomplete="off" class="form-control"/>
+                                <input type="datetime-local" required id="departure" th:field="*{departure}" th:value="${myFlight.departure}" autocomplete="off" class="form-control"/>
                             </div>
 
                             <div class="form-group">
                                 <label for="arrival">Arrival time:</label>
-                                <input type="datetime-local" required id="arrival" th:field="*{arrival}" autocomplete="off" class="form-control"/>
+                                <input type="datetime-local" required id="arrival" th:field="*{arrival}" th:value="${myFlight.arrival}" autocomplete="off" class="form-control"/>
                             </div>
 
                             <div class="form-group">
                                 <label for="airline">Airline ID:</label>
-<!--                                <input type="text" id="airline" placeholder="Airline ID" th:field="*{airline}" autocomplete="off" class="form-control"/>-->
+                                <!--                                <input type="text" id="airline" placeholder="Airline ID" th:field="*{airline}" autocomplete="off" class="form-control"/>-->
                                 <select id="airline" class="form-control" th:field="*{airline}" required>
-                                    <option value="" hidden>Select airline company</option>
+                                    <option value="" th:value="${myFlight.airline.getId()}" th:text="${myFlight.airline.getName()}" hidden>Select airline company</option>
                                     <option th:value="${'5169'}" th:text="${'Tarom'}"></option>
                                     <option th:value="${'3318'}" th:text="${'Lufthansa'}"></option>
                                     <option th:value="${'2183'}" th:text="${'Emirates'}"></option>
@@ -54,23 +56,23 @@
 
                             <div class="form-group">
                                 <label for="departureAirport">Departure Airport ID:</label>
-<!--                                <input type="text" id="departureAirport" placeholder="Departure Airport ID" th:field="*{departureAirport}" autocomplete="off" class="form-control"/>-->
+                                <!--                                <input type="text" id="departureAirport" placeholder="Departure Airport ID" th:field="*{departureAirport}" autocomplete="off" class="form-control"/>-->
                                 <select id="departureAirport" class="form-control" th:field="*{departureAirport}" required>
-                                    <option value="" hidden>Select departure airport</option>
+                                    <option value="" th:value="${myFlight.departureAirport.getId()}" th:text="${myFlight.departureAirport.getName()}" hidden>Select departure airport</option>
                                     <option th:each="a : ${myAirports}" th:value="${a.id}" th:text="${a.name}"></option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="ArrivalAirport">Arrival Airport ID:</label>
-<!--                                <input type="text" id="ArrivalAirport" placeholder="Arrival Airport ID" th:field="*{arrivalAirport}" autocomplete="off" class="form-control"/>-->
+                                <!--                                <input type="text" id="ArrivalAirport" placeholder="Arrival Airport ID" th:field="*{arrivalAirport}" autocomplete="off" class="form-control"/>-->
                                 <select id="ArrivalAirport" class="form-control" th:field="*{arrivalAirport}" required>
-                                    <option value="" hidden>Select departure airport</option>
+                                    <option value="" th:value="${myFlight.arrivalAirport.getId()}" th:text="${myFlight.arrivalAirport.getName()}" hidden>Select departure airport</option>
                                     <option th:each="a : ${myAirports}" th:value="${a.id}" th:text="${a.name}"></option>
                                 </select>
                             </div>
 
-                            <button class="btn btn-primary" type="submit">Add flight</button>
+                            <button class="btn btn-primary" type="submit">Edit flight</button>
                         </form>
                     </div>
                 </div>

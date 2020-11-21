@@ -31,15 +31,18 @@ public class SelectedController {
     @GetMapping("/selected/{airportId}")
     public ModelAndView displayAirportByCity(@PathVariable("airportId") final Long airportId) {
         final ModelAndView mav = new ModelAndView("selected");
-        final Optional<Airport> airport = airportRepository.findById(airportId);
-        final String airportName = airport.map(a -> a.getName()).orElse("Fara nume");
+        final Optional<Airport> optionalAirport = airportRepository.findById(airportId);
+        final Airport airport = optionalAirport.get();
 
         // Optional<T> = map => Optional<Optional<T>>
         // Optional<T> = flatMap => Optional<T>
 
-        final List<Flight> flights = airport.map(a -> flightRepository.findByDepartureAirportOrArrivalAirport(a, a)).orElse(new ArrayList<>());
+        final List<Flight> departureFlights = optionalAirport.map(a -> flightRepository.findByDepartureAirport(airport).orElse(new ArrayList<>())).get();
+        final List<Flight> arrivalFlights = optionalAirport.map(a -> flightRepository.findByArrivalAirport(airport).orElse(new ArrayList<>())).get();
 
-        mav.addObject("airport", airportName);
+        mav.addObject("airport", airport);
+        mav.addObject("departureFlights", departureFlights);
+        mav.addObject("arrivalFlights", arrivalFlights);
         return mav;
     }
 

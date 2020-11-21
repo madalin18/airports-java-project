@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Header</title>
@@ -27,11 +28,12 @@
 <!--                <li class="nav-item">-->
 <!--                    <a class="nav-link" href="#">Airports</a>-->
 <!--                </li>-->
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Admin</a>
+                <li class="nav-item" sec:authorize="hasRole('administrator')">
+                    <a class="nav-link" th:href="@{/flights}">Admin</a>
                 </li>
             </ul>
-            <a th:href="@{/login}" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Login</a>
+            <a th:href="@{/login}" sec:authorize="isAnonymous()" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Login</a>
+            <a th:href="@{/logout}" sec:authorize="isAuthenticated()" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Logout</a>
         </div>
     </nav>
 

@@ -5,4 +5,6 @@ import ro.siit.airports.domain.Flight;
 public interface FlightService {
 
     Flight insertIntoDatabase(Flight message);
+
+    Flight updateFlight(Flight myFlight);
 }

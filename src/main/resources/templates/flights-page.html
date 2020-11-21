@@ -14,8 +14,11 @@
 </head>
     <body>
         <div class="home">
-            <div th:replace="header-admin :: header-admin"></div>
+            <div th:replace="header :: header"></div>
             <a th:href="@{/add}" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Add flight</a>
+            <div th:text="${msg}">
+
+            </div>
             <div>
                 <h1>Flights list:</h1>
             </div>
@@ -23,21 +26,28 @@
             <div class="container">
                 <table>
                     <thead>
+                    <th>Flight Number</th>
                     <th>Departure Airport</th>
                     <th>Departure Time</th> <!-- heading for each column -->
                     <th>Arrival Airport</th>
                     <th>Arrival Time</th>
                     <th>Airline company</th>
-                    <th>Flight Number</th>
+                    <th>Action</th>
                     </thead>
                     <tbody>
                     <tr th:each="f : ${myFlights}"> <!-- table row -->
+                        <td th:text="${f.flightNo}"></td>
                         <td th:text="${f.departureAirport.getName()}"></td>
                         <td th:text="${f.departure}"></td> <!-- table data -->
                         <td th:text="${f.arrivalAirport.getName()}"></td>
                         <td th:text="${f.arrival}"></td>
                         <td th:text="${f.airline.getName()}"></td>
-                        <td th:text="${f.flightNo}"></td>
+                        <td>
+                            <a th:href="@{/flights/} + ${f.id}">Update</a>
+                        </td>
+                        <td>
+                            <a th:href="@{/delete/} + ${f.id}">Delete</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
