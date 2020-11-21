@@ -7,6 +7,8 @@ import ro.siit.airports.domain.Flight;
 import ro.siit.airports.repository.FlightRepository;
 import ro.siit.airports.service.FlightService;
 
+import java.util.List;
+
 @Service
 public class FlightServiceImpl implements FlightService {
 
@@ -16,6 +18,14 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public Flight insertIntoDatabase(final Flight flight) {
         return flightRepository.save(flight);
+    }
+
+    @Override
+    public List<Flight> listAll(String keyword) {
+        if (keyword != null) {
+            return flightRepository.search(keyword);
+        }
+        return flightRepository.findAll();
     }
 
     @Override
