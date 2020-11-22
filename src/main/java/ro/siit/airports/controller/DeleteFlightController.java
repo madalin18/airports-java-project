@@ -10,6 +10,7 @@ import ro.siit.airports.repository.AirportRepository;
 import ro.siit.airports.repository.FlightRepository;
 import ro.siit.airports.service.FlightService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -24,7 +25,7 @@ public class DeleteFlightController {
     @Autowired
     private AirportRepository airportRepository;
 
-    @GetMapping("/delete/{flightId}")
+    @GetMapping("/flights/deleted/{flightId}")
     public String deleteUser(@PathVariable("flightId") final Long flightId, final Model model) {
         final Flight flight = flightRepository.findById(flightId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + flightId));
@@ -33,6 +34,9 @@ public class DeleteFlightController {
         flight.setArrivalAirport(null);
         flightRepository.delete(flight);
         model.addAttribute("msg", "Flight deleted");
-        return "delete";
+
+        final List<Flight> flights = flightRepository.findAll();
+        model.addAttribute("myFlights", flights);
+        return "flights-page";
     }
 }

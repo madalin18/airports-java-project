@@ -3,10 +3,10 @@ package ro.siit.airports.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import ro.siit.airports.domain.Flight;
+import ro.siit.airports.repository.AirlineRepository;
 import ro.siit.airports.repository.FlightRepository;
 import ro.siit.airports.service.FlightService;
 
@@ -21,6 +21,9 @@ public class FlightsController {
     @Autowired
     private FlightService flightService;
 
+    @Autowired
+    private AirlineRepository airlineRepository;
+
 //    @GetMapping({"/flights"})
 //    public String displayFlightsPage(final Model model) {
 //        final List<Flight> flights = flightRepository.findAll();
@@ -29,12 +32,12 @@ public class FlightsController {
 //    }
 
     @RequestMapping("/flights")
-    public String viewFlightsPage(final Model model, @Param("keyword") String keyword) {
+    public ModelAndView viewFlightsPage(@Param("keyword") String keyword) {
+        final ModelAndView mav = new ModelAndView("flights-page");
         List<Flight> flights = flightService.listAll(keyword);
-        model.addAttribute("myFlights", flights);
-        model.addAttribute("keyword", keyword);
-
-        return "flights-page";
+        mav.addObject("myFlights", flights);
+        mav.addObject("keyword", keyword);
+        return mav;
     }
 
 }

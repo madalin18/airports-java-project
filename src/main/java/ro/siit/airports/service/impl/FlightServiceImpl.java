@@ -2,7 +2,6 @@ package ro.siit.airports.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ro.siit.airports.domain.Airport;
 import ro.siit.airports.domain.Flight;
 import ro.siit.airports.model.Dates;
 import ro.siit.airports.repository.FlightRepository;
@@ -26,7 +25,13 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public List<Flight> listAll(String keyword) {
         if (keyword != null) {
-            return flightRepository.search(keyword);
+            List<Flight> flights = flightRepository.search(keyword);
+            if (flights.isEmpty()) {
+                flights = flightRepository.searchAiline(keyword);
+                return flights;
+            } else {
+                return flights;
+            }
         }
         return flightRepository.findAll();
     }
@@ -91,4 +96,5 @@ public class FlightServiceImpl implements FlightService {
         }
         return filteredFlights;
     }
+
 }

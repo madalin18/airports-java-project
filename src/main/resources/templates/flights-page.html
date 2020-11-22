@@ -28,6 +28,7 @@
                 <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
             </form>
 
+
             <div>
                 <h1>Flights list:</h1>
             </div>
@@ -55,7 +56,7 @@
                             <a th:href="@{/flights/} + ${f.id}">Update</a>
                         </td>
                         <td>
-                            <a th:href="@{/delete/} + ${f.id}">Delete</a>
+                            <a th:href="@{/flights/deleted/} + ${f.id}">Delete</a>
                         </td>
                     </tr>
                     </tbody>

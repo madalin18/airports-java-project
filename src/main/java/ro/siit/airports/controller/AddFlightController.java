@@ -1,6 +1,7 @@
 package ro.siit.airports.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,11 +32,16 @@ public class AddFlightController {
         return "add-flight";
     }
 
-    @PostMapping("/post-add")
-    public String diplayResult(final Model model, @ModelAttribute final Flight flight) {
+    @PostMapping("/flights/post-add")
+    public String diplayResult(final Model model, @ModelAttribute final Flight flight,
+                               @Param("keyword") String keyword) {
         flightService.insertIntoDatabase(flight);
-        model.addAttribute("msg", "Flight inserted to database");
-        return "add-succes";
+        List<Flight> flights = flightService.listAll(keyword);
+        model.addAttribute("myFlights", flights);
+        model.addAttribute("keyword", keyword);
+
+        model.addAttribute("msg", "New flight inserted");
+        return "flights-page";
     }
 
 }
