@@ -1,0 +1,76 @@
+.navbar {
+    background-color: rgba(255, 255, 0, 0.3);
+}
+
+body {
+    min-height: 100%;
+    height: 100vh;
+    background: url('img/bg-orange2.jpg') no-repeat center center / cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+table {
+    background: rgba(255,255,255,0.7);
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+}
+
+td, th {
+    padding: 0 0.7rem;
+    padding-top: 0.3rem;
+    color: darkblue;
+}
+a {
+    color: darkblue;
+}
+
+h3 {
+    color: black;
+    max-width: fit-content;
+    background: rgba(255, 255, 102, 0.7);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+}
+
+h5 {
+    margin-top: 6rem;
+}
+
+.container-1 {
+    display: flex;
+}
+
+.box-1 {
+    flex: 2;
+    order: 2;
+    margin-left: 5rem;
+}
+.box-1 h2 {
+    margin-top: 2rem;
+}
+
+.box-2 {
+    flex: 2;
+    order: 2;
+    max-width: 70%;
+    margin-left: 10rem;
+}
+.box-2 h3 {
+    color: black;
+}
+
+.pages {
+    margin-bottom: 2rem;
+    margin-top: -1rem;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 0, 0.3);
+  color: white;
+  text-align: center;
+}

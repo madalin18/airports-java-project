@@ -20,7 +20,7 @@ public class AirportServiceImpl implements AirportService {
 
     @Override
     public Page<Airport> listAll(int pageNum, String sortField, String sortDir) {
-        int pageSize = 15;
+        int pageSize = 10;
         Pageable pageable = PageRequest.of(pageNum - 1, pageSize,
                 sortDir.equals("asc") ? Sort.by(sortField).ascending()
                         : Sort.by(sortField).descending()

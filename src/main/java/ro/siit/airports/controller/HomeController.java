@@ -27,6 +27,7 @@ public class HomeController {
     public String displayHomePage(final Model model) {
         final List<Airport> airports = airportRepository.findByCountry("Romania");
         model.addAttribute("myAirports", airports);
+        model.addAttribute("msg", "Romanian Airports");
         return "home-page";
     }
 
@@ -49,6 +50,7 @@ public class HomeController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("myAirports", airports);
+        model.addAttribute("msg", "International Airports");
         return "all-page";
     }
 
