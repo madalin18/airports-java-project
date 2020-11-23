@@ -47,7 +47,7 @@ public class HomeController {
 
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
-        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "asc" : "desc");
 
         model.addAttribute("myAirports", airports);
         model.addAttribute("msg", "International Airports");

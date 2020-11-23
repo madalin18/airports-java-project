@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         final String[] staticContent = {"/templates/**","/resources/static/**","/resources/static/styles/**","/resources/static/styles/img/**","/styles/**", "/styles/img/**", "/js/**"};
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home","/home/all", "/index","/index/all",
+                .antMatchers("/", "/home","/home/all","/home/all/page/**", "/index","/index/all",
                         "/resources/**", "/templates/**", "/resources/static/styles/**","/resources/static/styles/img/**",
                         "/static/**","/webjars/**", "/assets/**",
                         "/selected/**", "/filteredselected/**").permitAll()

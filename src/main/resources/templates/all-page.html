@@ -55,19 +55,19 @@
                 </table>
                 <div class="pages">
                     Total Items: <span th:text="${totalItems}"></span>
-                    <a th:if="${currentPage > 1}" th:href="@{/home/all/page/1}" th:text="First">First</a>
+                    <a th:if="${currentPage > 1}" th:href="@{/home/all/page/1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}" th:text="First">First</a>
 
-                    <a th:if="${currentPage > 1}" th:href="@{/home/all/page/} + ${currentPage - 1}">Previous</a>
+                    <a th:if="${currentPage > 1}" th:href="@{/home/all/page/} + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}">Previous</a>
 
-                    <a th:if="${currentPage > 2}" th:href="@{/home/all/page/} + ${currentPage - 2}">[[${currentPage - 2}]]</a>
+                    <a th:if="${currentPage > 2}" th:href="@{/home/all/page/} + ${currentPage - 2} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}">[[${currentPage - 2}]]</a>
                     &nbsp;
-                    <a th:if="${currentPage > 1}" th:href="@{/home/all/page/} + ${currentPage - 1}">[[${currentPage - 1}]]</a>
+                    <a th:if="${currentPage > 1}" th:href="@{/home/all/page/} + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}">[[${currentPage - 1}]]</a>
                     &nbsp;
-                    <a th:href="@{/home/all/page/} + ${currentPage}" th:text="'Curent ' + ${currentPage}"></a>
+                    <a th:href="@{/home/all/page/} + ${currentPage} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}" th:text="'Curent ' + ${currentPage}"></a>
                     &nbsp;
-                    <a th:if="${currentPage < totalPages}" th:href="@{/home/all/page/} + ${currentPage + 1}">[[${currentPage + 1}]]</a>
+                    <a th:if="${currentPage < totalPages}" th:href="@{/home/all/page/} + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}">[[${currentPage + 1}]]</a>
                     &nbsp;
-                    <a th:if="${currentPage < totalPages}" th:href="@{/home/all/page/} + ${currentPage + 2}">[[${currentPage + 2}]]</a>
+                    <a th:if="${currentPage < totalPages}" th:href="@{/home/all/page/} + ${currentPage + 2} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}">[[${currentPage + 2}]]</a>
                     &nbsp;
 
                     <a th:if="${currentPage < totalPages}" th:href="@{/home/all/page/} + ${currentPage + 1}" th:text="Next"></a>
