@@ -23,6 +23,8 @@ public class HomeController {
     @Autowired
     private AirportRepository airportRepository;
 
+//    Without pageable ->
+//
 //    @GetMapping({"/", "/index", "/home"})
 //    public String displayHomePage(final Model model) {
 //        final List<Airport> airports = airportRepository.findByCountry("Romania");
@@ -33,21 +35,15 @@ public class HomeController {
 
     @GetMapping({"/page/{pageNum}","/index/page/{pageNum}", "/home/page/{pageNum}"})
     public String viewPageRomania(final Model model,
-                           @PathVariable(name = "pageNum") int pageNum,
-                           @Param("sortField") String sortField,
-                           @Param("sortDir") String sortDir) {
+                           @PathVariable(name = "pageNum") int pageNum) {
 
-        Page<Airport> page = airportService.listRomania(pageNum, sortField, sortDir);
+        Page<Airport> page = airportService.listRomania(pageNum);
 
         final List<Airport> airports = page.getContent();
 
         model.addAttribute("currentPage", pageNum);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
-
-        model.addAttribute("sortField", sortField);
-        model.addAttribute("sortDir", sortDir);
-        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "asc" : "desc");
 
         model.addAttribute("myAirports", airports);
         model.addAttribute("msg", "Romanian Airports");
@@ -56,7 +52,7 @@ public class HomeController {
 
     @RequestMapping({"/", "/index", "/home"})
     public String viewHomePageRomania(Model model) {
-        return viewPageRomania(model, 1, "id", "asc");
+        return viewPageRomania(model, 1);
     }
 
 

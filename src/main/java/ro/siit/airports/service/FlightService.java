@@ -1,5 +1,6 @@
 package ro.siit.airports.service;
 
+import org.springframework.data.domain.Page;
 import ro.siit.airports.domain.Flight;
 import ro.siit.airports.model.Dates;
 
@@ -23,4 +24,5 @@ public interface FlightService {
 //    List<Flight> listArrivalFromBetween(List<Flight> flights, LocalDateTime startDate, LocalDateTime endDate);
     List<Flight> listArrivalFromBetween(List<Flight> flights, Dates dates);
 
+    public Page<Flight> listAll(int pageNum);
 }

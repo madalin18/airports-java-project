@@ -11,7 +11,7 @@ public interface AirportService {
 
     public Page<Airport> listAll(int pageNum, String sortField, String sortDir);
 
-    public Page<Airport> listRomania(int pageNum, String sortField, String sortDir);
+    public Page<Airport> listRomania(int pageNum);
 
 //    public List<Airport> listAll(String keyword);
 }
