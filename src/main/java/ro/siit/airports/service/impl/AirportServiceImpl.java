@@ -18,7 +18,7 @@ public class AirportServiceImpl implements AirportService {
     @Autowired
     private AirportRepository airportRepository;
 
-    @Override
+       @Override
     public Page<Airport> listAll(int pageNum, String sortField, String sortDir) {
         int pageSize = 10;
         Pageable pageable = PageRequest.of(pageNum - 1, pageSize,
@@ -27,6 +27,17 @@ public class AirportServiceImpl implements AirportService {
         );
         return airportRepository.findAll(pageable);
     }
+
+    @Override
+    public Page<Airport> listRomania(int pageNum, String sortField, String sortDir) {
+        int pageSize = 10;
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize,
+                sortDir.equals("asc") ? Sort.by(sortField).ascending()
+                        : Sort.by(sortField).descending()
+        );
+        return airportRepository.findByCountry("Romania", pageable);
+    }
+
 
 //    @Override
 //    public List<Airport> listAll(String keyword) {

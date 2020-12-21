@@ -23,13 +23,42 @@ public class HomeController {
     @Autowired
     private AirportRepository airportRepository;
 
-    @GetMapping({"/", "/index", "/home"})
-    public String displayHomePage(final Model model) {
-        final List<Airport> airports = airportRepository.findByCountry("Romania");
+//    @GetMapping({"/", "/index", "/home"})
+//    public String displayHomePage(final Model model) {
+//        final List<Airport> airports = airportRepository.findByCountry("Romania");
+//        model.addAttribute("myAirports", airports);
+//        model.addAttribute("msg", "Romanian Airports");
+//        return "home-page";
+//    }
+
+    @GetMapping({"/page/{pageNum}","/index/page/{pageNum}", "/home/page/{pageNum}"})
+    public String viewPageRomania(final Model model,
+                           @PathVariable(name = "pageNum") int pageNum,
+                           @Param("sortField") String sortField,
+                           @Param("sortDir") String sortDir) {
+
+        Page<Airport> page = airportService.listRomania(pageNum, sortField, sortDir);
+
+        final List<Airport> airports = page.getContent();
+
+        model.addAttribute("currentPage", pageNum);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "asc" : "desc");
+
         model.addAttribute("myAirports", airports);
         model.addAttribute("msg", "Romanian Airports");
         return "home-page";
     }
+
+    @RequestMapping({"/", "/index", "/home"})
+    public String viewHomePageRomania(Model model) {
+        return viewPageRomania(model, 1, "id", "asc");
+    }
+
 
     @GetMapping({"/index/all/page/{pageNum}", "/home/all/page/{pageNum}"})
     public String viewPage(final Model model,
