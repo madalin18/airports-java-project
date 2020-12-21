@@ -7,6 +7,7 @@ import ro.siit.airports.model.Dates;
 import ro.siit.airports.repository.FlightRepository;
 import ro.siit.airports.service.FlightService;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,7 @@ public class FlightServiceImpl implements FlightService {
         final List<Flight> filteredflights = new ArrayList<>();
         for (Flight f: flights) {
             if (f.getDeparture().isAfter(LocalDateTime.now()) &&
-                    f.getDeparture().isBefore(LocalDateTime.now().plusDays(1))) {
+                    f.getDeparture().isBefore(LocalDate.now().plusDays(1).atStartOfDay())) {
                 filteredflights.add(f);
             }
         }
@@ -66,7 +67,7 @@ public class FlightServiceImpl implements FlightService {
         final List<Flight> filteredflights = new ArrayList<>();
         for (Flight f: flights) {
             if (f.getArrival().isAfter(LocalDateTime.now()) &&
-                    f.getArrival().isBefore(LocalDateTime.now().plusDays(1))) {
+                    f.getArrival().isBefore(LocalDate.now().plusDays(1).atStartOfDay())) {
                 filteredflights.add(f);
             }
         }
