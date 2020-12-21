@@ -11,7 +11,6 @@ import ro.siit.airports.repository.FlightRepository;
 import ro.siit.airports.service.FlightService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class DeleteFlightController {

@@ -10,7 +10,6 @@ import ro.siit.airports.domain.Airport;
 import ro.siit.airports.repository.AirportRepository;
 import ro.siit.airports.service.AirportService;
 
-import java.util.List;
 
 @Service
 public class AirportServiceImpl implements AirportService {
@@ -35,12 +34,4 @@ public class AirportServiceImpl implements AirportService {
         return airportRepository.findByCountry("Romania", pageable);
     }
 
-
-//    @Override
-//    public List<Airport> listAll(String keyword) {
-//        if (keyword != null) {
-//            return airportRepository.search(keyword);
-//        }
-//        return airportRepository.findAll();
-//    }
 }

@@ -1,11 +1,9 @@
 package ro.siit.airports.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import ro.siit.airports.domain.Airport;
 import ro.siit.airports.domain.Flight;
 import ro.siit.airports.repository.AirportRepository;
@@ -40,7 +38,6 @@ public class EditFlightController {
 
     @PostMapping("/flights")
     public String diplayResult(final Model model, @ModelAttribute final Flight myFlight) {
-//        flightService.updateFlight(myFlight);
         flightService.insertIntoDatabase(myFlight);
         final List<Flight> flights = flightRepository.findAll();
         model.addAttribute("myFlights", flights);

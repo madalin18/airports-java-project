@@ -30,20 +30,12 @@ public class SelectedController {
 
     @Autowired
     private FlightService flightService;
-//
-//    @GetMapping("/selected")
-//    public String displaySelectedPage() {
-//        return "selected";
-//    }
 
     @GetMapping("/selected/{airportId}")
     public ModelAndView displayAirportByCity(@PathVariable("airportId") final Long airportId) {
         final ModelAndView mav = new ModelAndView("selected");
         final Optional<Airport> optionalAirport = airportRepository.findById(airportId);
         final Airport airport = optionalAirport.get();
-
-        // Optional<T> = map => Optional<Optional<T>>
-        // Optional<T> = flatMap => Optional<T>
 
         final List<Flight> departureFlights = optionalAirport.map(f -> flightRepository.findByDepartureAirport(airport).orElse(new ArrayList<>())).get();
         final List<Flight> todayDepartureFlights = flightService.listDepartureFromNowTillTomorrow(departureFlights);

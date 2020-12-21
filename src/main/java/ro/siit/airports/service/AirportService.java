@@ -13,5 +13,4 @@ public interface AirportService {
 
     public Page<Airport> listRomania(int pageNum);
 
-//    public List<Airport> listAll(String keyword);
 }

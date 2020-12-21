@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ro.siit.airports.domain.Airport;
 import ro.siit.airports.domain.Flight;
 import ro.siit.airports.repository.AirlineRepository;
 import ro.siit.airports.repository.FlightRepository;
@@ -29,21 +28,16 @@ public class FlightsController {
     @Autowired
     private AirlineRepository airlineRepository;
 
-//    @GetMapping({"/flights"})
-//    public String displayFlightsPage(final Model model) {
-//        final List<Flight> flights = flightRepository.findAll();
-//        model.addAttribute("myFlights", flights);
-//        return "flights-page";
-//    }
+//    Without pageable   ->
 
-//    @RequestMapping("/flights")
-//    public ModelAndView viewFlightsPage(@Param("keyword") String keyword) {
-//        final ModelAndView mav = new ModelAndView("flights-page");
-//        List<Flight> flights = flightService.listAll(keyword);
-//        mav.addObject("myFlights", flights);
-//        mav.addObject("keyword", keyword);
-//        return mav;
-//    }
+    @RequestMapping("/flights/search")
+    public ModelAndView viewFlightsPage(@Param("keyword") String keyword) {
+        final ModelAndView mav = new ModelAndView("flights-page");
+        List<Flight> flights = flightService.listAll(keyword);
+        mav.addObject("myFlights", flights);
+        mav.addObject("keyword", keyword);
+        return mav;
+    }
 
 
     @GetMapping({"/flights/page/{pageNum}"})

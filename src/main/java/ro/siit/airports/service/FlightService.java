@@ -18,10 +18,8 @@ public interface FlightService {
 
     List<Flight> listArrivalFromNowTillTomorrow(List<Flight> flights);
 
-//    List<Flight> listDepartureFromBetween(List<Flight> flights, LocalDateTime startDate, LocalDateTime endDate);
     List<Flight> listDepartureFromBetween(List<Flight> flights, Dates dates);
 
-//    List<Flight> listArrivalFromBetween(List<Flight> flights, LocalDateTime startDate, LocalDateTime endDate);
     List<Flight> listArrivalFromBetween(List<Flight> flights, Dates dates);
 
     public Page<Flight> listAll(int pageNum);
